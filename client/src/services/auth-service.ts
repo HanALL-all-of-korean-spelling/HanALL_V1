@@ -1,29 +1,15 @@
 import axios from "axios";
 import router from "next/router";
-import { LoginInputs } from "../../types/auth";
+import { JoinInputs, LoginInputs } from "../../types/auth";
 
 // auth
-export async function join(inputs: LoginInputs) {
-  return await axios
-    .post("/api/auth/join", inputs)
-    .then((res) => {
-      //회원가입 성공
-      if (res.status === 200) {
-        router.push("/login");
-      }
-    })
-    .catch((error) => {
-      return error.response;
-    });
-}
-
 export async function login(inputs: LoginInputs) {
   return await axios
-    .post("/api/auth/login", inputs)
+    .post("api/auth/login", inputs)
     .then((res) => {
       //로그인 성공
-      if (res.status === 200) {
-        const token = res.data.token;
+      if (res.status === 201) {
+        const token = res.data.accesstoken;
         // axios 헤더에 토큰 담아 보내기
         axios.defaults.headers.common["Authorization"] = token;
         router.push("/");
@@ -33,10 +19,11 @@ export async function login(inputs: LoginInputs) {
       }
     })
     .catch((error) => {
-      return error.response;
+      return error.response.message;
     });
 }
 
+// TODO: clear cookie
 export const logout = async () => {
   return await axios.get("/api/auth/logout").then((res) => {
     //로그아웃 성공
@@ -47,6 +34,20 @@ export const logout = async () => {
 };
 
 // users
+export async function join(inputs: JoinInputs) {
+  return await axios
+    .post("api/users", inputs)
+    .then((res) => {
+      //회원가입 성공
+      if (res.status === 201) {
+        router.push("/login");
+      }
+    })
+    .catch((error) => {
+      return error.response;
+    });
+}
+
 export const getUserInfo = async () => {
   return axios
     .get("/api/users", {})
