@@ -3,13 +3,11 @@ import { RootState } from "../_app/store";
 import { IUser } from "../../types/auth";
 
 export interface UserState {
-  user: IUser | undefined;
-  isAdmin: ConstrainBoolean;
+  user?: IUser;
 }
 
 const initialState: UserState = {
   user: undefined,
-  isAdmin: false,
 };
 
 export const UserSlice = createSlice({
@@ -18,15 +16,10 @@ export const UserSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;
-      if (state.user?.email === "matji1349@gmail.com") {
-        state.isAdmin = true;
-      } else {
-        state.isAdmin = false;
-      }
     },
     setUserScore: (state, action) => {
       if (state.user != undefined) {
-        state.user.point += action.payload;
+        state.user.userPoint += action.payload;
       }
     },
   },
