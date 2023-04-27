@@ -25,7 +25,7 @@ const initialState: QnaState = {
         nickname: "",
         user_id: "",
         title: "",
-        question: "",
+        content: "",
       },
     },
     answer: undefined,
@@ -64,7 +64,7 @@ export const QnaSlice = createSlice({
         findItem._source.title = action.payload.title;
       }
       state.qnaDetail.question._source.title = action.payload.title;
-      state.qnaDetail.question._source.question = action.payload.question;
+      state.qnaDetail.question._source.content = action.payload.question;
     },
     deleteQuestion: (state, action) => {
       state.qnaList.result = state.qnaList.result.filter(

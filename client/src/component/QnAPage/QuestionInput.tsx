@@ -16,7 +16,7 @@ export const QuestionInput = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const initialValues: QuestionInputs = { title: "", question: "" };
+  const initialValues: QuestionInputs = { title: "", content: "" };
   const [inputs, setInputs] = useState<QuestionInputs>(initialValues);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -62,7 +62,7 @@ export const QuestionInput = () => {
           textArea
           name="question"
           onChange={handleInputChange}
-          value={inputs.question}
+          value={inputs.content}
           placeholder="추가되었으면 하는 내용을 입력해주세요."
           required
         ></Input>
