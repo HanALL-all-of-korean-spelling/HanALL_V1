@@ -59,9 +59,24 @@ export const getUserInfo = async () => {
     });
 };
 
+export const putTestResult = (score: number) => {
+  return axios
+    .patch("/api/users/point", { plusPoint: score })
+    .then((response) => {
+      if (response.status === 200) {
+        router.push("/test/result");
+        return response.data;
+      }
+    })
+    .catch((error) => {
+      return error.response;
+    });
+};
+
+// Scrap
 export const getScrapList = () => {
   return axios
-    .get("/api/users/scraps", {})
+    .get("/api/scraps", {})
     .then((response) => {
       return response.data;
     })
@@ -75,20 +90,6 @@ export const getTestList = () => {
     .get("/api/users/tests", {})
     .then((response) => {
       return response.data;
-    })
-    .catch((error) => {
-      return error.response;
-    });
-};
-
-export const putTestResult = (score: number) => {
-  return axios
-    .put("/api/users/tests", { point: score })
-    .then((response) => {
-      if (response.status === 200) {
-        router.push("/test/result");
-        return response.data;
-      }
     })
     .catch((error) => {
       return error.response;
