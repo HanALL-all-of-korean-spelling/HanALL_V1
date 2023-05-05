@@ -18,11 +18,11 @@ export const MyInfo = ({ user, score }: { user: IUser; score?: number }) => {
         )}
         <div>
           나의 총점:
-          <strong>{user.point * 10}</strong>
+          <strong>{user.userPoint * 10}</strong>
         </div>
         <div>
           현재 등급:
-          <strong>{user.rank}</strong>
+          <strong>{user.userRank}</strong>
         </div>
       </div>
       {score !== undefined && (

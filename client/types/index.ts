@@ -118,7 +118,7 @@ export interface IQnaDetail {
 // 문의 게시판 글 작성
 export interface QuestionInputs {
   title: string;
-  question: string;
+  content: string;
 }
 
 // 정보(철자/띄어쓰기) 글 작성

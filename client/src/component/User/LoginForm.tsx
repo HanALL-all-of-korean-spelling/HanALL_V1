@@ -10,7 +10,7 @@ import { AlertToast } from "../common/AlertToast/AlertToast";
 import style from "./User.module.scss";
 
 export const LoginForm = () => {
-  const initialValues: LoginInputs = { email: "", password: "" };
+  const initialValues: LoginInputs = { email: "", passwd: "" };
   const [inputs, setInputs] = useState<LoginInputs>(initialValues);
   const [isAlert, setIsAlert] = useState(false);
   const [messageContent, setMessageContent] = useState("");
@@ -27,12 +27,11 @@ export const LoginForm = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await login(inputs);
-    if (res?.status === 200) {
-      const userInfo = await getUserInfo();
-      dispatch(setUser(userInfo));
+    if (res?.status === 201) {
+      dispatch(setUser(res.data));
     } else {
       setIsAlert(true);
-      setMessageContent(res?.data);
+      setMessageContent(res?.message);
     }
   };
 
@@ -48,10 +47,10 @@ export const LoginForm = () => {
       />
       <Input
         type="password"
-        name="password"
+        name="passwd"
         placeholder="Password"
         onChange={handleInputChange}
-        value={inputs.password}
+        value={inputs.passwd}
         required
         minLength={8}
       />

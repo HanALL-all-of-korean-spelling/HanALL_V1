@@ -1,15 +1,19 @@
 export interface LoginInputs {
-  email: string,
-  password: string,
-};
+  email: string;
+  passwd: string;
+}
 
 export interface JoinInputs extends LoginInputs {
-  nickname: string,
-};
+  nickname: string;
+}
 
 export interface IUser {
-  email: string,
-  nickname: string,
-  rank: string,
-  point: number,
+  email: string;
+  nickname: string;
+  userRank: string;
+  userPoint: number;
+  userId?: number;
+  isAdmin?: boolean;
+  accesstoken?: string;
+  refreshtoken?: string;
 }

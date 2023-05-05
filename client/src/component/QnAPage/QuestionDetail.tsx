@@ -23,7 +23,7 @@ export const QuestionDetail = ({
   const dispatch = useAppDispatch();
 
   // 수정 입력 인풋
-  const initialValues: QuestionInputs = { title: "", question: "" };
+  const initialValues: QuestionInputs = { title: "", content: "" };
   const [inputs, setInputs] = useState<QuestionInputs>(initialValues);
 
   const user = useAppSelector(getUser);
@@ -49,7 +49,7 @@ export const QuestionDetail = ({
     setIsEdit(!isEdit);
     setInputs({
       title: qnaDetail.question._source.title,
-      question: qnaDetail.question._source.question,
+      content: qnaDetail.question._source.content,
     });
     // 수정 완료
     if (isEdit) {
@@ -77,7 +77,7 @@ export const QuestionDetail = ({
       {qnaDetail?.question && (
         <div className={style.questionContent}>
           {!isEdit ? (
-            <div>{qnaDetail.question._source.question}</div>
+            <div>{qnaDetail.question._source.content}</div>
           ) : (
             <>
               <Input
@@ -89,7 +89,7 @@ export const QuestionDetail = ({
                 textArea
                 name="question"
                 onChange={handleInputChange}
-                value={inputs.question}
+                value={inputs.content}
               ></Input>
             </>
           )}
@@ -113,7 +113,7 @@ export const QuestionDetail = ({
       ) : (
         <>
           <div className={style.answer}>아직 답변이 등록되지 않았습니다.</div>
-          {user.isAdmin && <AnswerInput id={id} />}
+          {user.user?.isAdmin && <AnswerInput id={id} />}
         </>
       )}
     </div>

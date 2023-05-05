@@ -7,7 +7,7 @@ import { Input } from "../common/Input/Input";
 import style from "./User.module.scss";
 
 export const JoinForm = () => {
-  const initialValues: JoinInputs = { email: "", password: "", nickname: "" };
+  const initialValues: JoinInputs = { email: "", passwd: "", nickname: "" };
   const [inputs, setInputs] = useState<JoinInputs>(initialValues);
   const [isAlert, setIsAlert] = useState(false);
 
@@ -39,10 +39,10 @@ export const JoinForm = () => {
       />
       <Input
         type="password"
-        name="password"
+        name="passwd"
         placeholder="Password"
         onChange={handleInputChange}
-        value={inputs.password}
+        value={inputs.passwd}
         required
         minLength={8}
       />

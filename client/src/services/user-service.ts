@@ -5,7 +5,7 @@ const baseUrl = "http://hanall.site";
 
 const requestGet = (url: string) => {
   return axios
-    .get(baseUrl + "/api" + url)
+    .get("/api" + url)
     .then((response) => {
       return response.data;
     })
@@ -137,5 +137,5 @@ export const getMainSpellingList = () => {
 
 // today
 export const getTodayInfo = () => {
-  return requestGet("/todays");
+  return requestGet("/posts/today");
 };
